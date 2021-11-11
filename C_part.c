@@ -1,76 +1,40 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 
-int main(){
-    int i = 0;
-    //char c;
-    char a[4995];
-    FILE *f;
-    int len = 10 ;//sizeof(a) / sizeof(a[0]);
-    f = fopen("G:/Programming/C & bash/Mean_STD_Variance_Calculator_with_C/1.txt", "r");
-    float c = fgetc(f);
-
-    while (c != EOF){
-        printf("%c", c);
-        c = fgetc(f);
+float Mean(long double *x, int size)
+{
+    float mean;
+    int i;
+    float sum = 0;
+    for (i = 0; i < size; ++i)
+    {
+        sum += x[i];
     }
-
-
-
-
-
-    //for(i = 0 ; i < len ; i++) {
-        //printf("%c\n", c);
-        //s = fgetc(f);
-        //fscanf(f, "%s", &a[i]);
-
-    //}
-    fclose(f);
-    //for (i = 0 ; i < len; i++){
-        //printf("%f\n", a[i]);
-    //}
+    mean = sum / size;
+    printf("Mean value is : %f\n", mean);
+    return mean;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-int main(){
-    int i, a[5] = {1, 2, 3, 4, 5};
-    int b[5];
-    int sum = 0;
-    for (i = 0; i<5 ; i++){
-        sum += a[i];
-        //b[i] = a[i];
-        printf("%d\n", sum);
-
-    }
-
+int main()
+{
+    float mean;
+    char str_data[4995];
+    int i = 0;
+    long double a[4995];
+    int size = sizeof(a) / sizeof(a[0]);
     
+    FILE * file;
+    file = fopen("G:/Programming/C & bash/Mean_STD_Variance_Calculator_with_C/related_data/1.txt", "r+");
 
-    }*/
+    while (!feof(file))
+    {
+        fgets(str_data, 4995, file);
+        a[i] = atof(str_data);
+        i++;
+    }
+    fclose(file);
+
+    Mean(a, size);
+    printf("%s", "hello");
+}
